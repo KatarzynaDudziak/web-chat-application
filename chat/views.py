@@ -7,7 +7,6 @@ from .forms import *
 
 
 def chat_view(request):
-    print(request.user)
     if not request.user.id:
         return HttpResponseRedirect('user/login')
 
@@ -25,17 +24,11 @@ def chat_view(request):
     return render(request, 'main.html', {'messages' : message})
 
 
-def admin_view(request):
-    message = MessageModel.objects.all().order_by('-date')
-
-    return render(request, 'admin_view.html', {'message' : message})
-
-
 def delete_message(request):
     if request.method == 'POST':
         try:
-            MessageModel.objects.filter(id = request.POST['id']).delete()
+            MessageModel.objects.get(id = request.POST['id']).delete()
         except:
-            return HttpResponseNotFound('...')
+            return HttpResponseNotFound('404')
     
-    return HttpResponseRedirect('/main/')
+    return HttpResponseRedirect('/')
