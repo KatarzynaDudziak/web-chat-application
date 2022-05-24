@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+span {
+    font-size: x-small;
+    color: rgb(143, 6, 181);
+}
+
+h1 {
+    color: rgb(252, 151, 0);
+}
+
+h6 {
+    color:rgb(45, 109, 48);
+}
+
+body {
+    height: 100vh;
+    background-color: rgb(178, 196, 171);
+}
+
+/* .nav {
+    background-color: rgb(249, 212, 25);
+    height: 7vh;
+} */
+
+.nav-user {
+    background-color: rgb(245, 241, 241);
+    border-right: 1px rgb(205, 204, 204) solid;
+    font-size: 40px;
+    color: rgb(252, 151, 0);
+}
+
+.messages-background {
+    background-color: white;
+}
+
+.chat-name {
+    background-color: rgb(245, 241, 241);
+    border-bottom: 1px rgb(205, 204, 204) solid;
+    color: rgb(45, 109, 48);
+}
+
+.message-place {
+    background-color: rgb(245, 241, 241);
+}
+
+.button {
+    background-color: rgb(143, 6, 181);
+    font-size: 18px;
+    color: white;
+}
+
+.message {
+    border: rgb(215, 213, 213) 1px solid;
+    box-shadow: 1px 2px rgb(179, 178, 180);
+    border-radius: 20px;
+    background-color: rgb(250, 248, 248);
+}
+
+.my-message:after { 
+    content: "."; 
+    visibility: hidden; 
+    display: block; 
+    height: 0; 
+    clear: both;
+ }
+
+.my-message .message {
+    float: right;
+}
+
+div.my-message .message {
+    background-color: rgb(178, 196, 171);
+}
+
+.text-place {
+    max-height: 40px;
+    min-height: 40px;
+}
+
+.btn-close {
+    size: 12px;
+}
