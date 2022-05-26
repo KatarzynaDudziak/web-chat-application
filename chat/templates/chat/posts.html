@@ -1,0 +1,20 @@
+{% block content %}
+<div class="messages-background p-2 h-100"  style="overflow: auto;">
+    {% for message in messages %}
+    <div class="message-container {% if message.author == request.user %} my-message {% endif %} p-2">
+        <div class="message d-inline-block p-2"> 
+            {% if user.is_superuser or message.author == request.user %}
+            <form method="POST" action="{% url 'delete' %}"> 
+                {% csrf_token %}
+                <button class="btn-close" type="submit"></button>
+                <input type="hidden" value="{{ message.id }}" name="id">
+            </form>
+            {% endif %}
+            <p style="white-space: pre-line" id="message-id">{{ message.content }}</p>
+            <span>{{message.author}}</span>
+            <span class="time-right">{{ message.date }}</span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
