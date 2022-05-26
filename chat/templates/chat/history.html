@@ -3,22 +3,20 @@
 <div class="chat-name p-2 h-auto">History <a href="{% url 'logout' %}">Logout</a></div>
 {% include 'posts.html' %}
 <div class="message-place p-2 h-auto">
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Page-navigation">
         <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
+            {% if messages.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ messages.previous_page_number }}">Previous</a></li>
+            {% endif %}
+            {% for i in number_of_pages %}
+                <li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+            {% endfor %}
+            {% if messages.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ messages.next_page_number }}">Next</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ messages.paginator.num_pages }}">Last &raquo</a></li>
+            {% endif %}
         </ul>
-      </nav>
+    </nav>
 </div>
 {% endblock %}
