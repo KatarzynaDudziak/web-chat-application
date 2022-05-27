@@ -20,7 +20,7 @@ def chat_view(request):
             message.save()
             return HttpResponseRedirect('/')
 
-    messages_list = MessageModel.objects.all().order_by('-date')
+    messages_list = MessageModel.objects.all().order_by('-date')[:5]
 
     return render(request, 'main.html', {'messages' : messages_list})
 
@@ -40,9 +40,20 @@ def delete_message(request):
 def history(request):
     messages_list = MessageModel.objects.all().order_by('-date')
 
-    p = Paginator(messages_list, 5)
+    p = Paginator(messages_list, 10)
     page = request.GET.get('page')
     messages = p.get_page(page)
     nums = "a" * messages.paginator.num_pages
 
     return render(request, 'history.html', {'messages' : messages, 'number_of_pages' : nums})
+
+
+@login_required(login_url='/user/login')
+def search_message(request):
+    if request.method == 'POST':
+        query_phrase = request.POST.get('content', None)
+        if query_phrase:
+            results = MessageModel.objects.filter(content__contains=query_phrase)
+            return render(request, 'history.html', {'messages' : results})
+
+    return HttpResponseRedirect('/history')
