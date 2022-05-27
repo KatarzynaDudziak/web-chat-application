@@ -3,14 +3,14 @@ from django.http import HttpResponseNotFound
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+
 from .models import *
 from .forms import *
 
 
+@login_required(login_url='/user/login')
 def chat_view(request):
-    if not request.user.id:
-        return HttpResponseRedirect('user/login')
-
     if request.method == 'POST':
         form = MessageForm(request.POST)
 
@@ -25,6 +25,7 @@ def chat_view(request):
     return render(request, 'main.html', {'messages' : messages_list})
 
 
+@login_required(login_url='/user/login')
 def delete_message(request):
     if request.method == 'POST':
         try:
@@ -35,6 +36,7 @@ def delete_message(request):
     return HttpResponseRedirect('/')
 
 
+@login_required(login_url='/user/login')
 def history(request):
     messages_list = MessageModel.objects.all().order_by('-date')
 
@@ -43,5 +45,4 @@ def history(request):
     messages = p.get_page(page)
     nums = "a" * messages.paginator.num_pages
 
-    
     return render(request, 'history.html', {'messages' : messages, 'number_of_pages' : nums})
