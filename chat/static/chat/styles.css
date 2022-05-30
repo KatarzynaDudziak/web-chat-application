@@ -84,3 +84,9 @@ div.my-message .message {
 .btn-close {
     size: 12px;
 }
+
+.avatar {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 50%;
+}

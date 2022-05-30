@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from user.forms import RegisterForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-
+from django.contrib.auth.decorators import login_required
 
 def register_user(request):
     form = RegisterForm()
@@ -39,3 +39,8 @@ def logout_user(request):
     logout(request)
     messages.info(request, 'You have been logged out')
     return redirect('/user/login')
+
+
+@login_required(login_url='user/login')
+def user_profile(request):
+    return render(request, 'user/profile.html')
