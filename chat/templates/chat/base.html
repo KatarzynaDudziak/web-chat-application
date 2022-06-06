@@ -12,7 +12,7 @@
 <body>
     <div class="container-fluid g-0 h-100">
         <div class="d-flex h-100 g-0">
-            <div class="nav-user col-sm-2 d-none d-sm-block text-center"><img class="avatar" src="{{user.profile.avatar.url}}"/><br>{{ user.username }}</div>
+            <div class="nav-user col-sm-2 d-none d-sm-block text-center"><img class="avatar" src="{{user.profile.avatar.url}}"/><br><a href="{% url 'user-profile' %}">{{ user.username }}</a></div>
             <div class="col d-flex flex-column">
                 {% block content %}{% endblock %}
             </div>
