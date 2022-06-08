@@ -1,8 +1,13 @@
 {% block content %}
-<div class="messages-background p-2 h-100"  style="overflow: auto;">
+<div class="messages-background h-100"  style="overflow: auto;">
     {% for message in messages %}
     <div class="message-container {% if message.author == request.user %} my-message {% endif %} p-2">
-        <div class="message d-inline-block p-2"> 
+        {% if message.author.username == None %}
+            <img class="avatar" src="/media/default.jpg"/>
+        {% elif not message.author == request.user %}
+            <img class="avatar" src="{{message.author.profile.avatar.url}}"/>
+        {% endif %}
+        <div class="message d-inline-block  p-2"> 
             {% if user.is_superuser or message.author == request.user %}
             <form method="POST" action="{% url 'delete' %}"> 
                 {% csrf_token %}

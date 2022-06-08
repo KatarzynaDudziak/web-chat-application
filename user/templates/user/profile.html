@@ -1,20 +1,52 @@
-{% block content %}
-<div class="p-3">
-    {% include 'user/includes/messages.html' %}
-    <img class="avatar" src="{{ user.profile.avatar.url }}" />
-</div>
-<div class="form-content">
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div>
-            <label class="mb-1">Username:</label>
-                {{ user_form.username }}
-            <label class="mb-1">Email:</label>
-                {{ user_form.email }}
-            <label class="small mb-1">Change Avatar:</label>
-                {{ profile_form.avatar }}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'chat/styles.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <title>Profile</title>
+</head>
+<body>
+    <div class="container h-100">
+        {% include 'user/includes/messages.html' %}
+        <div class="h-100 d-flex justify-content-center align-items-center">
+            <div class="user-card p-5 shadow-sm bg-body rounded">
+                <div class="d-flex justify-content-center p-1">
+                    <h1>User Profile</h1>
+                </div>
+                <div class="d-flex justify-content-center p-1">
+                    <img class="avatar" src="{{ user.profile.avatar.url }}" />
+                </div>
+                <div class="d-flex justify-content-center">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <span>USERNAME</span>
+                        <div class="input-group row mb-3">
+                            <div class="input-group-append">
+                                <input type="text" class="form-control" value="{{ user.username }}" name="username">
+                            </div>
+                        </div>
+                        <span>EMAIL</span>
+                        <div class="input-group row mb-3">
+                            <div class="input-group-append">
+                                <input type="text" class="form-control" value="{{ user.email }}" name="email">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Avatar</label>
+                            <input class="form-control" type="file" name="avatar" id="formFile">
+                        </div>
+                        <div class="d-flex justify-content-center mt-3">
+                            <button type="submit" value="Register" class="btn btn-success p-1">Save Changes</button> 
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <button type="submit" class="btn btn-dark btn-lg">Save Changes</button>
-    </form>
-</div>
-{% endblock %}
+    </div>
+</body>
+</html>
