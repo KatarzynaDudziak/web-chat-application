@@ -1,6 +1,6 @@
 {% block content %}
 <div class="messages-background h-100"  style="overflow: auto;">
-    {% for message in messages %}
+    {% for message in messages reversed %}
     <div class="message-container pb-2 pt-1 {% if message.author == request.user %} my-message {% else %} d-flex align-items-center {% endif %}">
         <div class="avatar-container d-flex p-2">
             {% if message.author.username == None %}
@@ -23,7 +23,6 @@
             </form>
             {% endif %}
         </div>
-        
     </div>
     {% endfor %}
 </div>
