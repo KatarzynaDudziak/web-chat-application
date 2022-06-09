@@ -11,48 +11,46 @@
     <title>Register</title>
 </head>
 <body>
-    <div class="container h-100">
-        <div class="h-100 d-flex justify-content-center align-items-center">
-            <div class="user-card p-5 shadow-sm bg-body rounded">
-                {% include 'user/includes/messages.html' %}
-                <div class="d-flex justify-content-center">
-                    <h1>Create new Account</h1>
-                </div>
-                <div class="d-flex justify-content-center pb-3">
-                    <h6>Already Registered? <a href="{% url 'login' %}">Login</a></h6>
-                </div>
-                <div class="d-flex justify-content-center form-container">
-                    <form method="POST" action="">
-                        {% csrf_token %}
-                        <span>USERNAME</span>
-                        <div class="input-group mb-3">
-                            <div class="input-group-append">
-                                <input type="text" class="form-control" placeholder="username" name="username">
-                            </div>
+    <div class="container h-100 d-flex align-items-center justify-content-center">
+        <div class="user-card p-5 shadow-sm bg-body rounded">
+            {% include 'user/includes/messages.html' %}
+            <div class="d-flex justify-content-center text-center">
+                <h1>Create new Account</h1>
+            </div>
+            <div class="d-flex justify-content-center pb-3 text-center">
+                <h6>Already Registered? <a href="{% url 'login' %}">Login</a></h6>
+            </div>
+            <div class="d-flex justify-content-center form-container">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <span>USERNAME</span>
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <input type="text" class="form-control" placeholder="username" name="username">
                         </div>
-                        <span>EMAIL</span>
-                        <div class="input-group mb-3">
-                            <div class="input-group-append">
-                                <input type="text" class="form-control" placeholder="user@email.com" name="email">
-                            </div>
+                    </div>
+                    <span>EMAIL</span>
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <input type="text" class="form-control" placeholder="user@email.com" name="email">
                         </div>
-                        <span>PASSWORD</span>
-                        <div class="input-group mb-3">
-                            <div class="input-group-append">
-                                <input type="password" class="form-control" placeholder="password" name="password1">
-                            </div>
+                    </div>
+                    <span>PASSWORD</span>
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <input type="password" class="form-control" placeholder="password" name="password1">
                         </div>
-                        <span>RE-PASSWORD</span>
-                        <div class="input-group mb-3 pb-4">
-                            <div class="input-group-append">
-                                <input type="password" class="form-control" placeholder="re-password" name="password2">
-                            </div>
+                    </div>
+                    <span>RE-PASSWORD</span>
+                    <div class="input-group mb-3 pb-4">
+                        <div class="input-group-append">
+                            <input type="password" class="form-control" placeholder="re-password" name="password2">
                         </div>
-                        <div class="d-flex justify-content-center mt-3 register-container">
-                            <button type="submit" value="Register" class="registerbtn btn-success p-1">Register</button> 
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-3 register-container">
+                        <button type="submit" value="Register" class="registerbtn btn-success p-1">Register</button> 
+                    </div>
+                </form>
             </div>
         </div>
     </div>  

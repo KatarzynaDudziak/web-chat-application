@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="chat-name p-2 h-auto">
-    <p>History</p>
-    <a href="{% url 'main' %}">Home</a>
-    <a href="{% url 'logout' %}">Logout</a>
+<div class="chat-name d-flex justify-content-start align-items-center p-2">
+    <div class="p-2 flex-grow-1 bd-highlight">History</div>
+    <div class="bd-highlight"><a href="{% url 'main' %}">Home</a></div>
+    <div class="p-2 bd-highlight"><a href="{% url 'logout' %}">Logout</a></div>
     <form action="{% url 'search-results' %}" method ="POST">
         {% csrf_token %}
         <input type="text" name="content">
@@ -11,7 +11,7 @@
     </form>
 </div>
 {% include 'posts.html' %}
-<div class="message-place p-2 h-auto">
+<div class="message-place d-flex justify-content-center pt-1">
     <nav aria-label="Page-navigation">
         <ul class="pagination">
             {% if messages.has_previous %}

@@ -11,40 +11,38 @@
     <title>Profile</title>
 </head>
 <body>
-    <div class="container h-100">
-        {% include 'user/includes/messages.html' %}
-        <div class="h-100 d-flex justify-content-center align-items-center">
-            <div class="user-card p-5 shadow-sm bg-body rounded">
-                <div class="d-flex justify-content-center p-1">
-                    <h1>User Profile</h1>
-                </div>
-                <div class="d-flex justify-content-center p-1">
-                    <img class="avatar" src="{{ user.profile.avatar.url }}" />
-                </div>
-                <div class="d-flex justify-content-center">
-                    <form method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <span>USERNAME</span>
-                        <div class="input-group row mb-3">
-                            <div class="input-group-append">
-                                <input type="text" class="form-control" value="{{ user.username }}" name="username">
-                            </div>
+    {% include 'user/includes/messages.html' %}
+    <div class="container h-100 d-flex justify-content-center align-items-center">
+        <div class="user-card p-5 shadow-sm bg-body rounded">
+            <div class="d-flex justify-content-center p-1">
+                <h1>User Profile</h1>
+            </div>
+            <div class="d-flex justify-content-center p-1">
+                <img class="avatar" src="{{ user.profile.avatar.url }}" />
+            </div>
+            <div class="d-flex justify-content-center">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <span>USERNAME</span>
+                    <div class="input-group row mb-3">
+                        <div class="input-group-append">
+                            <input type="text" class="form-control" value="{{ user.username }}" name="username">
                         </div>
-                        <span>EMAIL</span>
-                        <div class="input-group row mb-3">
-                            <div class="input-group-append">
-                                <input type="text" class="form-control" value="{{ user.email }}" name="email">
-                            </div>
+                    </div>
+                    <span>EMAIL</span>
+                    <div class="input-group row mb-3">
+                        <div class="input-group-append">
+                            <input type="text" class="form-control" value="{{ user.email }}" name="email">
                         </div>
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label">Avatar</label>
-                            <input class="form-control" type="file" name="avatar" id="formFile">
-                        </div>
-                        <div class="d-flex justify-content-center mt-3">
-                            <button type="submit" value="Register" class="btn btn-success p-1">Save Changes</button> 
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="mb-3">
+                        <span>Avatar</span>
+                        <input class="form-control" type="file" name="avatar" id="formFile">
+                    </div>
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="submit" value="Register" class="btn btn-success p-1">Save Changes</button> 
+                    </div>
+                </form>
             </div>
         </div>
     </div>

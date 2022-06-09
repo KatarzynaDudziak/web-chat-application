@@ -20,7 +20,7 @@ def chat_view(request):
             message.save()
             return HttpResponseRedirect('/')
 
-    messages_list = MessageModel.objects.all().order_by('-date')[:5]
+    messages_list = MessageModel.objects.all().order_by('date')[:15]
 
     return render(request, 'main.html', {'messages' : messages_list})
 
