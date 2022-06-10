@@ -8,17 +8,22 @@ span {
     color: rgb(143, 6, 181);
 }
 
-a {
+.navbar > a {
     text-decoration: none;
     color: green;
 }
 
-a:hover {
-    color: rgb(1, 84, 1);
+.navbar:hover {
+    color: rgb(2, 61, 2);
+    border-radius: 30%;
+    background-color: rgba(210, 207, 207, 0.41);
+    transition: 0.5s;
 }
 
-a:active {
+.navbar:active {
     color: rgb(32, 158, 32);
+    border-radius: 30%;
+    background-color: rgba(169, 169, 169, 0.41);
 }
 
 h1 {
@@ -32,10 +37,6 @@ h6 {
 body {
     height: 100vh;
     background-color: rgb(178, 196, 171);
-}
-
-.nav-user {
-    font-size: 40px;
 }
 
 .messages-background {
@@ -63,6 +64,11 @@ body {
     border-radius: 20px;
     background-color: rgba(250, 248, 248, 0.671);
     position: relative;
+}
+
+.msg-content {
+    word-break: break-word;
+    white-space: pre-line
 }
 
 .my-message:after { 

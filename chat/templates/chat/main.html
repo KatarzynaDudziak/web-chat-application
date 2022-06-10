@@ -3,11 +3,15 @@
 <div class="d-flex justify-content-start bd-highlight align-items-center">
         <div class="p-1 flex-grow-1 bd-highlight">Chat name</div>
         <div class="p-1 bd-highlight"><img class="msg-avatar" src="{{user.profile.avatar.url}}"/></div>
-        <div class="p-1 bd-highlight"><a href="{% url 'user-profile' %}">{{ user.username }}</a></div>
-        <div class="p-1 bd-highlight"><a href="{% url 'logout' %}">Logout</a></div>
-        <div class="p-1 bd-highlight"><a href="{% url 'history' %}">History</a></div>
+        <div class="navbar p-1 bd-highlight"><a href="{% url 'user-profile' %}">{{ user.username }}</a></div>
+        <div class="navbar p-1 bd-highlight"><a href="{% url 'logout' %}">Logout</a></div>
+        <div class="navbar p-1 bd-highlight"><a href="{% url 'history' %}">History</a></div>
 </div>
-{% include 'posts.html' %}
+<div class="messages-background h-100" id="background" style="overflow: auto;">
+    {% for message in chat_messages reversed %}
+        {% include 'posts.html' %}
+    {% endfor %}
+</div>
     <div class="message-place p-1">
         <form action="" method="POST">
             {% csrf_token %}

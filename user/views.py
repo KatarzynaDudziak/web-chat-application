@@ -1,4 +1,3 @@
-import profile
 from django.shortcuts import redirect, render
 from user.forms import RegisterForm, UpdateProfileForm, UpdateUserForm
 from django.contrib import messages
@@ -44,7 +43,7 @@ def logout_user(request):
 
 
 @login_required(login_url='user/login')
-def user_profile(request):
+def my_profile(request):
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
         profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)

@@ -22,14 +22,17 @@ def chat_view(request):
 
     messages_list = MessageModel.objects.all().order_by('-date')[:15]
 
-    return render(request, 'main.html', {'messages' : messages_list})
+    return render(request, 'main.html', {'chat_messages' : messages_list})
 
 
 @login_required(login_url='/user/login')
 def delete_message(request):
     if request.method == 'POST':
         try:
-            MessageModel.objects.get(id = request.POST['id']).delete()
+            message_id = request.POST['id']
+            message = MessageModel.objects.get(message_id)
+            if message.author == request.user:
+                message.delete()
         except:
             return HttpResponseNotFound('404')
     
@@ -45,7 +48,7 @@ def history(request):
     messages = p.get_page(page)
     nums = "a" * messages.paginator.num_pages
 
-    return render(request, 'history.html', {'messages' : messages, 'number_of_pages' : nums})
+    return render(request, 'history.html', {'chat_messages' : messages, 'number_of_pages' : nums})
 
 
 @login_required(login_url='/user/login')
@@ -54,6 +57,6 @@ def search_message(request):
         query_phrase = request.POST.get('content', None)
         if query_phrase:
             results = MessageModel.objects.filter(content__contains=query_phrase)
-            return render(request, 'history.html', {'messages' : results})
+            return render(request, 'history.html', {'chat_messages' : results})
 
     return HttpResponseRedirect('/history')

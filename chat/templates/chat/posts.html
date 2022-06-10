@@ -1,6 +1,4 @@
 {% block content %}
-<div class="messages-background h-100"  style="overflow: auto;">
-    {% for message in messages reversed %}
     <div class="message-container pb-2 pt-1 {% if message.author == request.user %} my-message {% else %} d-flex align-items-center {% endif %}">
         <div class="avatar-container d-flex p-2">
             {% if message.author.username == None %}
@@ -11,7 +9,7 @@
         </div>
         <div class="message align-items-center p-2">
             <span>{{ message.author }}</span>
-            <div class="" style="white-space: pre-line" id="message-id">{{ message.content }}</div>
+            <div class="msg-content" id="message-id">{{ message.content }}</div>
             <span>{{ message.date }}</span>
             {% if user.is_superuser or message.author == request.user %}
             <form method="POST" action="{% url 'delete' %}" class="delete"> 
@@ -24,6 +22,4 @@
             {% endif %}
         </div>
     </div>
-    {% endfor %}
-</div>
 {% endblock %}

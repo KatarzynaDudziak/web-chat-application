@@ -15,5 +15,11 @@
             {% block content %}{% endblock %}
         </div>
     </div>
+    <script>
+        (function() {
+            var objDiv = document.getElementById("background");
+            objDiv.scrollTop = objDiv.scrollHeight;
+        }) ();
+    </script>
 </body>
 </html>
