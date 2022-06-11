@@ -30,8 +30,8 @@ def delete_message(request):
     if request.method == 'POST':
         try:
             message_id = request.POST['id']
-            message = MessageModel.objects.get(message_id)
-            if message.author == request.user:
+            message = MessageModel.objects.get(id = message_id)
+            if request.user.is_authenticated or message.author == request.user:
                 message.delete()
         except:
             return HttpResponseNotFound('404')
