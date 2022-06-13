@@ -22,7 +22,7 @@ body {
 }
 
 .navbar {
-    background-color: rgba(178, 196, 171, 0.751);
+    background-color: rgba(178, 196, 171, 0.763);
 }
 
 .messages-background {
@@ -46,6 +46,10 @@ body {
     border-radius: 20px;
     background-color: rgba(250, 248, 248, 0.671);
     position: relative;
+}
+
+.navbar-brand {
+    padding-left: 5px;
 }
 
 .msg-content {
@@ -96,4 +100,8 @@ form.delete {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+}
+
+footer {
+    background-color: rgba(178, 196, 171, 0.751);
 }

@@ -1,49 +1,60 @@
 {% extends "base.html" %}
 {% block content %}
-<nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'main' %}">ChatApp</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li>
-                    <img class="msg-avatar nav-link-active" src="{{user.profile.avatar.url}}"/>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'user-profile' %}">{{ user.username }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'history' %}">History</a>
-                </li>
-                <li>
-                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                </li>
-            </ul>
+<div class="container-fluid d-flex flex-column g-0 h-100">
+    <div class="d-flex flex-column h-100">
+        <nav class="navbar navbar-expand-lg navbar-light p-2">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'main' %}">ChatApp</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li>
+                            <img class="msg-avatar nav-link-active" src="{{user.profile.avatar.url}}"/>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'user-profile' %}">{{ user.username }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'history' %}">History</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="messages-background h-100" id="background" style="overflow: auto;">
+            {% for message in chat_messages reversed %}
+                {% include 'posts.html' %}
+            {% endfor %}
+        </div>
+        <div class="text-center">
+            <div class="container p-3 pb-0">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="row d-flex">
+                        <div class="col">
+                            <input type="message" name="content" class="form-control" maxlength="300" />
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-success mb-3">Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</nav>
-
-<div class="messages-background h-100" id="background" style="overflow: auto;">
-    {% for message in chat_messages reversed %}
-        {% include 'posts.html' %}
-    {% endfor %}
 </div>
-    <div class="message-place p-1">
-        <form action="" method="POST">
-            {% csrf_token %}
-            <div class="d-flex">
-                <textarea id="content" name="content" maxlength="400" class="w-100"></textarea>
-                <button type="submit" class="btn btn-success">Send</button>
-            </div>
-        </form>
+
         <script>
             (function() {
                 var objDiv = document.getElementById("background");
                 objDiv.scrollTop = objDiv.scrollHeight;
             }) ();
         </script>
-    </div>
+
 {% endblock %}
 
