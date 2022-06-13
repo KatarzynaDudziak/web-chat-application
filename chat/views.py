@@ -57,6 +57,7 @@ def search_message(request):
         query_phrase = request.POST.get('content', None)
         if query_phrase:
             results = MessageModel.objects.filter(content__contains=query_phrase)
-            return render(request, 'history.html', {'chat_messages' : results})
+            results_count = results.count()
+            return render(request, 'history.html', {'chat_messages' : results, 'results_count' : results_count, 'query_phrase' : query_phrase})
 
     return HttpResponseRedirect('/history')

@@ -1,15 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="chat-name d-flex justify-content-start align-items-center p-2">
-    <div class="navbar bd-highlight"><a href="{% url 'main' %}">Home</a></div>
-    <div class="navbar p-2 bd-highlight"><a href="{% url 'logout' %}">Logout</a></div>
-    <form action="{% url 'search-results' %}" method ="POST">
-        {% csrf_token %}
-        <input type="text" name="content">
-        <input type="submit" name="submit" class="btn-success" value="Search">
-    </form>
-</div>
+<nav class="navbar navbar-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'main' %}">Home</a>
+        <form class="d-flex" action="{% url 'search-results' %}" method="POST">
+            {% csrf_token %}
+            <input class="form-control me-2" type="text" placeholder="Search" name="content" aria-label="Search">
+            <button class="btn btn-success" type="submit" name="submit" value="Search">Search</button>
+        </form>
+    </div>
+</nav>
 <div class="messages-background h-100"  style="overflow: auto;">
+    {% if results_count %}
+        <div class="d-flex justify-content-center">Found {{ results_count }} '{{ query_phrase }}'</div>
+    {% endif %}
     {% for message in chat_messages %}
         {% include 'posts.html' %}
     {% endfor %}

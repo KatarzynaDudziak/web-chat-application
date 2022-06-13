@@ -8,24 +8,6 @@ span {
     color: rgb(143, 6, 181);
 }
 
-.navbar > a {
-    text-decoration: none;
-    color: green;
-}
-
-.navbar:hover {
-    color: rgb(2, 61, 2);
-    border-radius: 30%;
-    background-color: rgba(210, 207, 207, 0.41);
-    transition: 0.5s;
-}
-
-.navbar:active {
-    color: rgb(32, 158, 32);
-    border-radius: 30%;
-    background-color: rgba(169, 169, 169, 0.41);
-}
-
 h1 {
     color: rgb(252, 151, 0);
 }
@@ -39,6 +21,10 @@ body {
     background-color: rgb(178, 196, 171);
 }
 
+.navbar {
+    background-color: rgba(178, 196, 171, 0.751);
+}
+
 .messages-background {
     background-color: rgb(228, 223, 223);
 }
@@ -46,10 +32,6 @@ body {
 .chat-name {
     border-bottom: 1px rgb(205, 204, 204) solid;
     color: rgb(45, 109, 48);
-}
-
-.message-place {
-    /* background-color: rgb(245, 241, 241); */
 }
 
 .button {
