@@ -1,0 +1,34 @@
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light p-2">
+    <div class="container-fluid me-2">
+        <a class="navbar-brand" href="{% url 'main' %}">ChatApp</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li>
+                    <img class="msg-avatar nav-link-active" src="{{user.profile.avatar.url}}"/>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user-profile' %}">{{ user.username }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'history' %}">History</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+            {% url 'history' as history_path %}
+            {% if request.path  == history_path %}
+                <form class="d-flex" action="{% url 'search-results' %}" method="POST">
+                    {% csrf_token %}
+                    <input class="form-control me-2" type="text" placeholder="Search" name="content" aria-label="Search">
+                    <button class="btn-search btn btn-success" type="submit" name="submit" value="Search">Search</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+{% endblock %}

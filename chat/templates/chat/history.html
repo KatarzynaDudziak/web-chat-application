@@ -1,42 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container-fluid d-flex flex-column g-0 h-100">
-    <div class="d-flex flex-column h-100">
-        <nav class="navbar navbar-expand-lg navbar-light p-2">
-            <div class="container-fluid me-2">
-                <a class="navbar-brand" href="{% url 'main' %}">ChatApp</a>
-                <form class="d-flex" action="{% url 'search-results' %}" method="POST">
-                    {% csrf_token %}
-                    <input class="form-control me-2" type="text" placeholder="Search" name="content" aria-label="Search">
-                    <button class="btn-search btn btn-success" type="submit" name="submit" value="Search">Search</button>
-                </form>
-            </div>
-        </nav>
-        <div class="messages-background h-100"  style="overflow: auto;">
-            {% if results_count %}
-                <div class="d-flex justify-content-center">Found {{ results_count }} '{{ query_phrase }}'</div>
+<div class="messages-background h-100"  style="overflow: auto;">
+    {% if results_count %}
+        <div class="d-flex justify-content-center">Found {{ results_count }} '{{ query_phrase }}'</div>
+    {% endif %}
+    {% for message in chat_messages %}
+        {% include 'posts.html' %}
+    {% endfor %}
+</div>
+        
+
+<div class="message-place d-flex justify-content-center pt-3">
+    <nav aria-label="Page-navigation">
+        <ul class="pagination">
+            {% if chat_messages.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ chat_messages.previous_page_number }}">Previous</a></li>
             {% endif %}
-            {% for message in chat_messages %}
-                {% include 'posts.html' %}
+            {% for i in number_of_pages %}
+                <li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
             {% endfor %}
-        </div>
-        <div class="message-place d-flex justify-content-center pt-3">
-            <nav aria-label="Page-navigation">
-                <ul class="pagination">
-                    {% if chat_messages.has_previous %}
-                        <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
-                        <li class="page-item"><a class="page-link" href="?page={{ chat_messages.previous_page_number }}">Previous</a></li>
-                    {% endif %}
-                    {% for i in number_of_pages %}
-                        <li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
-                    {% endfor %}
-                    {% if chat_messages.has_next %}
-                        <li class="page-item"><a class="page-link" href="?page={{ chat_messages.next_page_number }}">Next</a></li>
-                        <li class="page-item"><a class="page-link" href="?page={{ chat_messages.paginator.num_pages }}">Last &raquo</a></li>
-                    {% endif %}
-                </ul>
-            </nav>
-        </div>
-    </div>
+            {% if chat_messages.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ chat_messages.next_page_number }}">Next</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ chat_messages.paginator.num_pages }}">Last &raquo</a></li>
+            {% endif %}
+        </ul>
+    </nav>
 </div>
 {% endblock %}
