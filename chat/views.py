@@ -1,9 +1,11 @@
+from operator import mod
 from django.utils import timezone
 from django.http import HttpResponseNotFound
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 from .models import *
 from .forms import *
@@ -61,3 +63,16 @@ def search_message(request):
             return render(request, 'history.html', {'chat_messages' : results, 'results_count' : results_count, 'query_phrase' : query_phrase})
 
     return HttpResponseRedirect('/history')
+
+
+@login_required
+def like_message(request):
+    if request.method == 'POST':
+        message_id = request.POST['id']
+        message = MessageModel.objects.get(id = message_id)
+        if message.likes.filter(id=request.user.id).exists():
+            message.likes.remove(request.user)
+        else:
+            message.likes.add(request.user)
+
+    return HttpResponseRedirect('/')
