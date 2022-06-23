@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404, render
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.contrib import messages
 
 from .models import *
 from .forms import *
@@ -70,9 +71,12 @@ def like_message(request):
     if request.method == 'POST':
         message_id = request.POST['id']
         message = MessageModel.objects.get(id = message_id)
-        if message.likes.filter(id=request.user.id).exists():
-            message.likes.remove(request.user)
+        if request.user != message.author:
+            if message.likes.filter(id=request.user.id).exists():
+                message.likes.remove(request.user)
+            else:
+                message.likes.add(request.user)
         else:
-            message.likes.add(request.user)
+            messages.warning(request, 'You cannot add like to your own message')
 
     return HttpResponseRedirect('/')

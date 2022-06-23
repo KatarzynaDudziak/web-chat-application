@@ -13,6 +13,7 @@
 <body>
     <div class="container-fluid d-flex flex-column g-0 h-100">
         <div class="d-flex flex-column h-100">
+            {% include 'user/includes/messages.html' %}
             {% include 'navbar.html' %}
             {% block content %}{% endblock %}
         </div>
