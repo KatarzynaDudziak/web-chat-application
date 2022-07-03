@@ -1,15 +1,14 @@
-from operator import mod
 from django.utils import timezone
 from django.http import HttpResponseNotFound
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse
 from django.contrib import messages
 
 from .models import *
 from .forms import *
+from .utils import *
 
 
 @login_required(login_url='/user/login')
@@ -25,7 +24,7 @@ def chat_view(request):
 
     messages_list = MessageModel.objects.all().order_by('-date')[:15]
 
-    return render(request, 'main.html', {'chat_messages' : messages_list})
+    return render(request, 'main.html', {'chat_messages' : messages_list, 'emoji' : emojis})
 
 
 @login_required(login_url='/user/login')

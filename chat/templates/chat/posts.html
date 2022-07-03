@@ -1,4 +1,5 @@
 {% block content %}
+{% load emoji %}
     <div class="message-container pb-2 pt-1 {% if message.author == request.user %} my-message {% else %} d-flex align-items-center {% endif %}">
         <div class="avatar-container d-flex p-2">
             {% if message.author.username == None %}
@@ -9,12 +10,12 @@
         </div>
         <div class="message align-items-center p-2">
             <span>{{ message.author }}</span>
-            <div class="msg-content" id="message-id">{{ message.content }}</div>
+            <div class="msg-content" id="message-id">{{ message.content|insert_emoji }}</div>
             <span>{{ message.date }}</span>
                 <form action="{% url 'like' %}" method="post">
                     {% csrf_token %}
                     {% url 'main' as main_path %}
-                    {% if request.path  == main_path %}
+                    {% if request.path == main_path %}
                         {% if request.user in message.likes.all%}
                         <button type="submit" class="btn btn-outline-secondary btn-sm" id="btn-heart">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
