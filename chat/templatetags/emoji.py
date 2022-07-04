@@ -5,7 +5,7 @@ from ..utils import *
 
 register = template.Library()
 
-@register.filter(is_safe = True)
+@register.filter
 def insert_emoji(arg):
     arg = conditional_escape(arg)
     for key,value in emojis.items():

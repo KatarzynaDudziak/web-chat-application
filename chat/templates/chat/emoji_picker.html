@@ -1,7 +1,11 @@
 {% block content %}
-    <div>
-        {% for key, value in emoji.items %}
-            <img src="/media/{{ value }}" title="{{ key }}" width="30" height="30">
-        {% endfor %}
+    <div style="display: none;">
+        <div id="emojis">
+            {% for key, value in emoji.items %}
+                <button class="emoji" data-emoji="{{ key }}">
+                    <img src="/media/{{ value }}"  width="30" height="30">
+                </button>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
