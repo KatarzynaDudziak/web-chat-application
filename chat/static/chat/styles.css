@@ -26,7 +26,7 @@ body {
 }
 
 .messages-background {
-    background-color: rgb(251, 248, 248);
+    background-image: url('annie-spratt-0ZPSX_mQ3xI-unsplash.jpg');
 }
 
 .chat-name {
@@ -73,9 +73,8 @@ div.my-message .message {
     background-color: rgba(178, 196, 171, 0.751);
 }
 
-.text-place {
-    max-height: 40px;
-    min-height: 40px;
+textarea {
+    resize: none;
 }
 
 .btn-close {
@@ -102,6 +101,3 @@ form.delete {
     border-radius: 50%;
 }
 
-footer {
-    background-color: rgba(178, 196, 171, 0.751);
-}
