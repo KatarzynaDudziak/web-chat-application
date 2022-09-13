@@ -1,6 +1,6 @@
 {% block content %}
 {% load emoji %}
-    <div class="message-container pb-2 pt-1 {% if message.author == request.user %} my-message {% else %} d-flex align-items-center {% endif %}">
+    <div class="message-container p-2 {% if message.author == request.user %} my-message {% else %} d-flex align-items-center {% endif %}">
         <div class="avatar-container d-flex p-2">
             {% if message.author.username == None %}
                 <img class="msg-avatar" src="/media/default.jpg"/>

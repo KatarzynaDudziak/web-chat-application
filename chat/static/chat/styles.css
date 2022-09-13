@@ -25,6 +25,10 @@ body {
     background-color: rgba(178, 196, 171, 0.763);
 }
 
+.navbar-brand {
+    font-size: 25px;
+}
+
 .messages-background {
     background-image: url('annie-spratt-0ZPSX_mQ3xI-unsplash.jpg');
 }
@@ -44,7 +48,7 @@ body {
     border: rgb(215, 213, 213) 1px solid;
     box-shadow: 1px 2px rgb(179, 178, 180);
     border-radius: 20px;
-    background-color: rgba(250, 248, 248, 0.671);
+    background-color: rgba(250, 248, 248, 0.548);
     position: relative;
 }
 
@@ -53,6 +57,7 @@ body {
 }
 
 .msg-content {
+    font-size: 20px;
     word-break: break-word;
     white-space: pre-line
 }
@@ -70,7 +75,7 @@ body {
 }
 
 div.my-message .message {
-    background-color: rgba(178, 196, 171, 0.751);
+    background-color: rgba(178, 196, 171, 0.553);
 }
 
 textarea {
@@ -101,3 +106,6 @@ form.delete {
     border-radius: 50%;
 }
 
+li .nav-link {
+    font-size: 20px;
+}
