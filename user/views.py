@@ -11,7 +11,6 @@ def register_user(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            user = form.cleaned_data.get('name')
             messages.success(request, "Registration was successful")
             return redirect('login')
         else:
