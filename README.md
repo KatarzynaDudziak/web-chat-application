@@ -16,3 +16,7 @@ The application includes the ability to create an account, register and log in, 
 - Windows `venv\Scripts\activate.bat`
 - Linux, MacOS X `source bin/activate`
 - `pip install -r requirements.txt`
+- Create .env file
+- `python -c "from django.core.management.utils import get_random_secret_key; print(f'SECRET_KEY = {get_random_secret_key()}')"`
+- Copy the generated Secret-Key and place it in the .env file
+
